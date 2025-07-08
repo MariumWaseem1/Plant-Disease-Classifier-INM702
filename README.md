@@ -1,79 +1,55 @@
-Air & Plant Health Classifier – INM702 Project
-This repository contains two machine learning applications developed as part of the INM702 coursework by Marium Waseem and Kovarthanan Kesavan.
+# Plant Disease Classifier – INM702 Task 2
 
-Task 1 predicts air quality using a neural network built from scratch in NumPy.
+This project classifies plant leaf diseases using convolutional neural networks (CNNs) built with PyTorch. Developed for the INM702 coursework.
 
-Task 2 classifies plant diseases using a convolutional neural network implemented in PyTorch.
+## Dataset
 
-Task 1: Air Quality Prediction (NumPy)
-Dataset: Air Quality & Pollution Assessment (Kaggle)
+\- Source: Plant Disease Recognition (Kaggle)  
+\- Classes: Healthy, Powdery, Rust  
+\- Image Input Sizes: 128x128 (baseline) and 224x224 (improved)
 
-Objective: Classify air quality into four classes — Good, Moderate, Poor, and Hazardous
+## Baseline Model
 
-Input Features: Temperature, Humidity, PM2.5, PM10, NO2, SO2, CO, Proximity to Industrial Areas, Population Density
+\- Architecture:  
+  \- 2 convolutional layers  
+  \- Max pooling  
+  \- 2 fully connected layers  
+\- Optimizer: SGD  
+\- Accuracy: 56% (signs of overfitting)
 
-Techniques Used
-Preprocessing with StandardScaler and one-hot encoding
+## Improved Model
 
-Class imbalance handled using SMOTE
+\- 3 convolutional layers with 32, 64, and 128 filters  
+\- Max pooling and dropout (rate = 0.5)  
+\- Dense layer with 512 neurons  
+\- Data Augmentation:  
+  \- Horizontal flip  
+  \- ImageNet normalization  
+\- Optimizer: Adam  
+\- Image Input Size: 224x224  
+\- Validation Accuracy: 95%
 
-Model: 3-layer dense neural network using ReLU and Softmax
+## Hyperparameter Tuning
 
-Optimization: Batch Gradient Descent and Mini-batch Gradient Descent
+\- Grid search over:  
+  \- Learning rates: 0.001, 0.01, 0.1  
+  \- Batch sizes: 16, 32  
+  \- Optimizers: SGD, Adam  
+\- Early stopping implemented  
+\- Best configuration:  
+  \- Learning rate = 0.001  
+  \- Batch size = 16  
+  \- Optimizer = Adam
 
-Regularization: Dropout (rate = 0.05) using inverted scaling
+## Future Work
 
-Results
-Accuracy with Batch Gradient Descent: 93.44%
+\- Add rotation and brightness augmentation  
+\- Use transfer learning (ResNet, DenseNet)  
+\- Build a user interface for real-time plant disease detection
 
-Accuracy with Mini-batch Gradient Descent: 91.63%
 
-Task 2: Plant Disease Classification (PyTorch)
-Dataset: Plant Disease Recognition (Kaggle)
 
-Classes: Healthy, Powdery, Rust
+## Authors
 
-Image Size: 128x128 for baseline model, 224x224 for improved model
-
-Baseline CNN Model
-Architecture: 2 convolutional layers → max pooling → 2 fully connected layers
-
-Optimizer: SGD
-
-Result: 56% test accuracy
-
-Improved CNN Model
-Architecture: 3 convolutional layers (32, 64, 128 filters)
-
-Dense Layer: 512 neurons
-
-Regularization: Dropout (0.5)
-
-Data Augmentation: Horizontal flipping and normalization
-
-Optimizer: Adam
-
-Hyperparameter Tuning
-Parameters tuned:
-
-Learning rates: 0.001, 0.01, 0.1
-
-Batch sizes: 16, 32
-
-Optimizers: SGD, Adam
-
-Early stopping to prevent overfitting
-
-Best configuration: LR = 0.001, Batch size = 16, Optimizer = Adam
-
-Final validation accuracy: 95%
-
-Future Work
-Integrate live air monitoring via sensors and IoT
-
-Apply rotation and brightness augmentation for better plant disease detection
-
-Experiment with ResNet, DenseNet for higher performance
-
-Deploy via web or mobile interface for public/environmental use
-
+\- Marium Waseem  
+\- Kovarthanan Kesavan
